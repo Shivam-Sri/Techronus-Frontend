@@ -56,8 +56,8 @@ function Notes() {
 
     return (
         <div>
-            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', justifyContent: 'space-evenly', }}>
-                <input type="text" placeholder="Note title ..." value={noteTitle} style={{ width: '370px', padding: '7px', marginTop: '20px' }} onChange={(e) => setNoteTitle(e.target.value)}
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', justifyContent: 'space-evenly', backgroundColor: '#fdfdfd' }}>
+                <input type="text" placeholder="Note title ..." value={noteTitle} style={{ width: '370px', padding: '17px', marginTop: '20px', backgroundColor: '#e0e0e0', borderRadius: '20px' }} onChange={(e) => setNoteTitle(e.target.value)}
                 ></input>
                 {errorTitle ? <h5 style={{ color: 'red' }}>{errorTitle}</h5> : null}
                 <textarea
@@ -66,15 +66,16 @@ function Notes() {
                     onChange={(e) => setNoteText(e.target.value)}
                     cols={49}
                     rows={15}
-                    style={{ padding: '7px', marginTop: '20px' }}
+                    style={{ padding: '17px', marginTop: '20px', backgroundColor: '#e0e0e0', borderRadius: '20px' }}
                 />
                 {errorText ? <h5 style={{ color: 'red' }}>{errorText}</h5> : null}
                 <button onClick={() => handleAddNote(noteText, noteTitle)}>Add Note</button>
             </div>
-            <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: '20px' }}>
+            <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: '20px', backgroundColor: '#fdfdfd' }}>
                 {notes.map((note, index) => (
                     <li key={index} onClick={() => { setSelected(index) }} style={{ width: '55%', marginTop: '20px' }}>
                         {selected == index ? <NoteCard note={note} userLogger={currentauthor}></NoteCard> : <NoteBar note={note}></NoteBar>}
+                        {/* {selected == index ? <NoteCard note={note} userLogger={currentauthor}></NoteCard> : <NoteCard note={note}></NoteCard>} */}
                     </li>
                 ))}
             </ul>

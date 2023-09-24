@@ -7,23 +7,28 @@ import Login from './pages/Login';
 import Notes from './pages/Notes';
 import Unauthorized from './pages/Unauthorized';
 import NotesImage from './assets/notes.png';
+import useStyles from './styles';
 
 function App() {
   const isAuthenticated = !!localStorage.getItem('token');
   const [email, setEmail] = useState(localStorage.getItem('email'));
+  const classes = useStyles();
   const handleLogout = async () => {
     await localStorage.clear();
     await window.location.reload();
   }
   return (
     <div className='App'>
-      <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', marginLeft: '200px', marginRight: '200px' }}>
-        <img src={NotesImage} height={100} width={90} alt="My Image" />
+      <div className={classes.appContainer}>
+        <img src={NotesImage} className={classes.image} alt="My Image" />
         {email ?
-          <div>
-            <h4>{email}</h4>
-            <h4 style={{ background: ' red', alignContent: 'center', color: 'white', borderRadius: '20px', paddingLeft: '20px', paddingBottom: '5px', cursor: 'pointer' }} onClick={handleLogout}>Logout</h4>
-          </div> : null}
+          (<div className={classes.emailContainer}>
+            <h4 className={classes.emailText}>{email}</h4>
+            <h4 className={classes.logoutButton} onClick={handleLogout}>
+              Logout
+            </h4>
+          </div>
+          ) : null}
       </div>
       <BrowserRouter>
         <Routes>
